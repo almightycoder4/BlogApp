@@ -47,12 +47,10 @@ export default function Navbar() {
           <div id="logindiv">
             {decodedToken ? (
               <div id="userbox">
-                <div>
-                  <Link id="userimg" to={"/setting"}>
-                    <img src={decodedToken.userimg} alt="userimage" />
-                    <p>Hello,{decodedToken.name}</p>
-                  </Link>
-                </div>
+                <Link id="userimg" to={"/setting"}>
+                  <img src={decodedToken.userimg} alt="userimage" />
+                  <p>Hello,{decodedToken.name}</p>
+                </Link>
               </div>
             ) : (
               <Link to={"/login"}>

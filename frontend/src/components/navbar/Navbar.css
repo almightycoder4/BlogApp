@@ -43,15 +43,9 @@
 }
 #userbox {
   display: flex;
-  align-items: flex-end;
 }
 #userimg > img {
   width: 10%;
-}
-#userimg {
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
 }
 #logindiv {
   display: flex;
