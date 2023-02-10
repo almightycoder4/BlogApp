@@ -1,0 +1,59 @@
+#banner {
+  display: flex;
+  height: 70px;
+  align-items: center;
+}
+#mainnav {
+  display: flex;
+  align-items: center;
+}
+#logo > img {
+  width: 150px;
+  height: 70px;
+}
+#navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: rgb(255, 255, 255);
+}
+#navbtn {
+  display: flex;
+  height: 50px;
+  background-color: rgb(255, 255, 255);
+  border: 0px;
+  font-size: 18px;
+  font-family: cursive;
+  align-items: center;
+  text-decoration: none;
+  font-weight: 700;
+}
+#navbtn:hover {
+  cursor: pointer;
+  background-color: rgb(202, 157, 247);
+  border-radius: 20px;
+  color: white;
+}
+#pages {
+  display: flex;
+}
+#searchblog {
+  display: flex;
+  align-items: center;
+}
+#userbox {
+  display: flex;
+  align-items: flex-end;
+}
+#userimg > img {
+  width: 10%;
+}
+#userimg {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+#logindiv {
+  display: flex;
+  align-items: center;
+}
