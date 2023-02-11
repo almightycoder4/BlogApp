@@ -7,6 +7,13 @@ const loginData = {
 const reducer = (state = loginData, action) => {
   const { type, payload } = action;
   switch (type) {
+    case types.LOGOUT_REQUEST:
+      return {
+        ...state,
+        token: "",
+        isLoading: false,
+        isError: false,
+      };
     case types.LOGIN_REQUEST:
       return {
         ...state,

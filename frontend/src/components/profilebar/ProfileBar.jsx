@@ -1,11 +1,10 @@
 import React from "react";
-import { Link, useNavigate, Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../profilebar/profilebar.css";
 export default function ProfileBar({ name }) {
   const navigate = useNavigate();
   function change() {
     let selected = document.querySelector("#profilebar").value;
-    console.log(selected);
     if (selected === "profile") {
       console.log("true");
       navigate("/setting");

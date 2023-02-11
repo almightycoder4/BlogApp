@@ -12,4 +12,7 @@ const login = (payload) => (dispatch) => {
     .then((res) => dispatch({ type: types.LOGIN_SUCCESS, payload: res.data }))
     .catch((err) => dispatch({ type: types.LOGIN_FAILURE, payload: err }));
 };
-export { login };
+const logout = (dispatch) => {
+  dispatch({ type: types.LOGOUT_REQUEST });
+};
+export { login, logout };
