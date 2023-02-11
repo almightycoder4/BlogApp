@@ -8,6 +8,7 @@ import Register from "../pages/Register/Register";
 import UsersBlog from "../pages/UserPage/UsersBlog";
 import Setting from "../pages/UserSetting/Setting";
 import ReqAuth from "../components/reqAuth";
+import Logout from "../pages/logout/Logout";
 
 export default function Mainroutes() {
   return (
@@ -18,6 +19,7 @@ export default function Mainroutes() {
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/famousblog" element={<Famous></Famous>}></Route>
         <Route path="/register" element={<Register></Register>}></Route>
+        <Route path="/logout" element={<Logout></Logout>}></Route>
         <Route
           path="/your-blog"
           element={

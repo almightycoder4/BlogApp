@@ -4,13 +4,17 @@ import "../navbar/Navbar.css";
 import logo from "../Images/logo-color.png";
 import { useSelector } from "react-redux";
 import { useJwt } from "react-jwt";
-import Profile from "../profile/Profile";
+import ProfileBar from "../profilebar/ProfileBar";
 export default function Navbar() {
   let token = useSelector((state) => state.authReducer.token);
   const { decodedToken } = useJwt(token);
+  let name;
+  if (decodedToken) {
+    name = decodedToken.name.split(" ").pop();
+    console.log(name);
+  }
   return (
     <div id="mainnav">
-      {/* <Profile></Profile> */}
       <div id="banner">
         <div id="logo">
           <img src={logo} alt="webimage" />
@@ -47,10 +51,8 @@ export default function Navbar() {
           <div id="logindiv">
             {decodedToken ? (
               <div id="userbox">
-                <Link id="userimg" to={"/setting"}>
-                  <img src={decodedToken.userimg} alt="userimage" />
-                  <p>Hello,{decodedToken.name}</p>
-                </Link>
+                <img src={decodedToken.userimg} alt="userimage" />
+                {<ProfileBar name={name} />}
               </div>
             ) : (
               <Link to={"/login"}>

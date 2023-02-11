@@ -41,12 +41,10 @@
   display: flex;
   align-items: center;
 }
-#userbox {
-  display: flex;
-}
-#userimg > img {
+#userbox > img {
   width: 10%;
 }
+
 #logindiv {
   display: flex;
   align-items: center;
