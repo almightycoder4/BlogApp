@@ -1,6 +1,6 @@
 import * as types from "./actionTypes";
 const data = {
-  posts: [],
+  userposts: [],
   isLoading: false,
   isLoaded: false,
   isError: false,
@@ -18,7 +18,7 @@ const reducer = (state = data, action) => {
     case types.GET_POSTS_DATA_SUCCESS:
       return {
         ...state,
-        posts: payload,
+        userposts: payload,
         isLoading: false,
         isLoaded: true,
         isError: false,

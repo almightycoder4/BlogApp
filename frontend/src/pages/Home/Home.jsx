@@ -3,6 +3,7 @@ import PostCard from "../../components/Cards/PostCard";
 import { useDispatch, useSelector } from "react-redux";
 import "../Home/Home.css";
 import { getPosts } from "../../Redux/posts/action";
+import AddPost from "../addPost/AddPost";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -26,6 +27,9 @@ export default function Home() {
               );
             })
           )}
+          <div id="addpost">
+            <AddPost></AddPost>
+          </div>
         </div>
       </div>
     </>

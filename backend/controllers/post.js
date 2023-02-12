@@ -52,13 +52,16 @@ async function getAllPost(req, res) {
 
 async function getUserPost(req, res) {
   try {
-    let { id } = req.params;
-    let post = await Post.find({ id });
-    let totalPost = await Post.count({ id });
+    console.log(req.user._id);
+    //let search = "author.userId";
+    let post = await Post.find({
+      "author.userId": `${req.user._id}`,
+    });
+    //let totalPost = await Post.count({ id });
     return res.status(200).send({
       data: {
         posts: post,
-        totalPosts: totalPost,
+        //totalPosts: totalPost,
       },
     });
   } catch (error) {
