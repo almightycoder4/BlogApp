@@ -27,6 +27,7 @@ export default function AddPost() {
                   rows="10"
                   placeholder="Type your content"
                 ></textarea>
+                <p>Add image for your blog post.</p>
                 <div id="addimg">
                   <input
                     type="file"
