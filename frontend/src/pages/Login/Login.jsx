@@ -1,6 +1,5 @@
 import * as React from "react";
-import Snackbar from "@mui/material/Snackbar";
-import MuiAlert from "@mui/material/Alert";
+import { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -17,6 +16,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useDispatch } from "react-redux";
 import { login } from "../../Redux/auth/action";
 import { useLocation, useNavigate } from "react-router-dom";
+import BasicSnackbar from "../../components/MuiToaster/BasicSnackbar";
 function Copyright(props) {
   return (
     <Typography
@@ -40,14 +40,12 @@ export default function SignIn() {
   const navigate = useNavigate();
   const comingFrom = location.state?.from?.pathname || "/";
 
-  const Alert = React.forwardRef(function Alert(props, ref) {
-    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  const [open, setOpen] = useState({
+    status: false,
   });
 
-  const [open, setOpen] = React.useState(false);
-
-  const handleClick = () => {
-    setOpen(true);
+  const handleClick = (message, severity) => {
+    setOpen({ ...open, status: true, message: message, severity: severity });
   };
 
   const handleClose = (event, reason) => {
@@ -55,7 +53,7 @@ export default function SignIn() {
       return;
     }
 
-    setOpen(false);
+    setOpen({ status: false });
   };
 
   const handleSubmit = (event) => {
@@ -68,15 +66,9 @@ export default function SignIn() {
     };
     dispatch(login(payload)).then((res) => {
       console.log(res.payload.responce);
-      if (res.payload.responce == "login_error") {
-        alert("Wrong Creditendtial");
-
+      if (res.payload.responce === "login_error") {
+        handleClick("Wrong Credential", "error");
         console.log(open);
-        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-          <Alert onClose={handleClose} severity="error" sx={{ width: "100%" }}>
-            This is a success message!
-          </Alert>
-        </Snackbar>;
       } else {
         navigate(comingFrom, { replace: true });
       }
@@ -85,6 +77,17 @@ export default function SignIn() {
 
   return (
     <ThemeProvider theme={theme}>
+      {open.status ? (
+        <BasicSnackbar
+          open={open.status}
+          severity={open.severity}
+          message={open.message}
+          onClose={handleClose}
+        />
+      ) : (
+        ""
+      )}
+
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
