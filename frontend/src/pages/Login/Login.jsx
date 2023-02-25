@@ -1,4 +1,6 @@
 import * as React from "react";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -37,15 +39,47 @@ export default function SignIn() {
   const location = useLocation();
   const navigate = useNavigate();
   const comingFrom = location.state?.from?.pathname || "/";
+
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    handleClick();
     const data = new FormData(event.currentTarget);
     let payload = {
       email: data.get("email"),
       password: data.get("password"),
     };
     dispatch(login(payload)).then((res) => {
-      navigate(comingFrom, { replace: true });
+      console.log(res.payload.responce);
+      if (res.payload.responce == "login_error") {
+        alert("Wrong Creditendtial");
+
+        console.log(open);
+        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+          <Alert onClose={handleClose} severity="error" sx={{ width: "100%" }}>
+            This is a success message!
+          </Alert>
+        </Snackbar>;
+      } else {
+        navigate(comingFrom, { replace: true });
+      }
     });
   };
 

@@ -61,13 +61,14 @@ async function login(req, res) {
     });
     if (!user) {
       return res.send({
-        error: "Email doesn't exists.!!!",
+        responce: "login_error",
       });
     }
     if (brcypt.compareSync(password, user.password)) {
       const token = genrateToken(user);
       const { _id, name, image, gender, email } = user;
       return res.send({
+        responce: "login_sucess",
         message: "Login Sucessfully!!!",
         token: token,
         data: {
@@ -77,6 +78,10 @@ async function login(req, res) {
           email: email,
           gender: gender,
         },
+      });
+    } else {
+      return res.send({
+        responce: "login_error",
       });
     }
   } catch (error) {
