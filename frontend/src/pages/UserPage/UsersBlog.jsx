@@ -13,7 +13,9 @@ export default function UsersBlog() {
     headers: { Authorization: `Bearer ${token}` },
   };
   useEffect(() => {
-    dispatch(getUsersPosts(`userpost`, config));
+    if (userpost.userposts === undefined) {
+      dispatch(getUsersPosts(`userpost`, config));
+    }
   }, [dispatch]);
 
   console.log(userpost);

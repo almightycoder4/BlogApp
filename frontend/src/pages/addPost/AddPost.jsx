@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import "../addPost/addpost.css";
-export default function AddPost() {
+export default function AddPost({ handleClick }) {
   const [add, setadd] = useState(true);
   const [data, setdata] = useState([]);
   return (
